@@ -1,0 +1,25 @@
+task 1
+SELECT
+    ProductName,
+    UnitPrice
+FROM Products
+WHERE UnitPrice >
+(
+    SELECT AVG(UnitPrice)
+    FROM Products);
+
+Task 2
+WITH CustomerSales AS
+(
+    SELECT
+        CustomerID,
+        SUM(Freight) AS TotalSales
+    FROM Orders
+    GROUP BY CustomerID
+)
+
+SELECT
+    CustomerID,
+    TotalSales
+FROM CustomerSales
+WHERE TotalSales > 5000;
